@@ -26,43 +26,46 @@ FILE_NAME = 'Tutorial_04_1_Data.xlsx';
 SHEET_NAME = 'Coins';
 
 %read data from sheet and notify the user
-change_values = readmatrix(FILE_NAME, 'Sheet', SHEET_NAME, 'Range', 'B4:B43');
+original_change_values = readmatrix(FILE_NAME, 'Sheet', SHEET_NAME, 'Range', 'B4:B43');
 fprintf('Original Data read from %s\n\n', FILE_NAME)
 
 
-%loop through the change_values matrix and calculate the necessary change for each entry.
-for current_change_value = change_values
-    remainder = mod(current_change_value, QUARTER); %calculate the remainder if the maximum number of quarters are given
-    quarters = (current_change_value-remainder)./QUARTER;%divide the difference of the current_change_value and the remainder by the constant QUARTER to determine the number of quarters that were given as change 
-    current_change_value = remainder;%update the current_change_value to be the remainder after giving quarters as change. updating the loop index might be illegal but seems to work as expected
+%===========================
+%BEGIN MATH
+%===========================
+change_values = original_change_values;%create a copy of original_change_values with which to incrementally reduce to calculate coin quantities
+remainder = mod(change_values, QUARTER); %calculate the remainder if the maximum number of quarters are given for each element in change_values
+quarters = (change_values-remainder)./QUARTER;%divide the difference of each change_value and each remainder by the constant QUARTER to determine the number of quarters that were given as change 
+change_values = remainder;%update each change_value to be the remainder after giving quarters as change.
    
-    %repeat calculation for dimes
-    remainder = mod(current_change_value, DIME);
-    dimes = (current_change_value-remainder)./DIME;
-    current_change_value = remainder;
+%repeat calculation for dimes
+remainder = mod(change_values, DIME);
+dimes = (change_values-remainder)./DIME;
+change_values = remainder;
+%repeat calculation for nickels
+remainder = mod(change_values, NICKEL);
+nickels = (change_values-remainder)./NICKEL;
+change_values = remainder;
+%repeat calculation for pennies
+remainder = mod(change_values, PENNY);
+pennies = (change_values-remainder)./PENNY;
+change_values = remainder;
+%calculate total coins for each change_value
+total_coins = quarters+dimes+nickels+pennies;
+%=========================
+%END MATH
+%=========================
 
-    %repeat calculation for nickels
-    remainder = mod(current_change_value, NICKEL);
-    nickels = (current_change_value-remainder)./NICKEL;
-    current_change_value = remainder;
-
-    %repeat calculation for pennies
-    remainder = mod(current_change_value, PENNY);
-    pennies = (current_change_value-remainder)./PENNY;
-    current_change_value = remainder;
-
-    %calculate total coins for this current_change_value and add all to the coin_quantities matrix
-    total_coins = quarters+dimes+nickels+pennies;
-    coin_quantities = [quarters, dimes, nickels, pennies, total_coins];
+%display header information
+fprintf('Minimum Number of Coins Needed to Make Change\n\n')
+fprintf('Change Due(cents)\tQuarters\tDimes\t   Nickels\t   Pennies\t Total Coins')
+%output the calculated values to the command window with header data
+for r=1:length(original_change_values)
+    fprintf('\n\t\t %3i \t\t %3i \t\t%3i \t\t%3i \t\t%3i \t\t%3i', original_change_values(r), quarters(r), dimes(r), nickels(r), pennies(r), total_coins(r))
 end
 
-%output the calculated values to the command window with header data
-fprintf('Minimum Number of Coins Needed to Make Change\n\n')
-fprintf('Change due(cents)\tQuarters\tDimes\tNickels\tDimes\tPennies\tTotalCoins\n')
-disp([change_values, coin_quantities])
-
 %write calculated values to SHEET_NAME in FILE_NAME
-writematrix(coin_quantities, FILE_NAME, 'Sheet', SHEET_NAME, 'Range', 'C4:G43')
-fprintf('These values have also been written to Tutorial_04_1_Data.xlsx')
+writematrix([quarters, dimes, nickels, pennies, total_coins], FILE_NAME, 'Sheet', SHEET_NAME, 'Range', 'C4:G43')
+fprintf('\n\nThese values have also been written to %s\n', FILE_NAME)
 
 %end program
