@@ -22,6 +22,11 @@ function result = inefficientSort(x)
 % 
 %   See also SORT
 
+
+%uncommented declaration of result and lenX due to runtime error
+lenX = length(x);
+result = zeros(1,lenX);
+
 for n=1:lenX
     % Get the position of the maximum value
     maxValPos = getMaxValPos(x);
