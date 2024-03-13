@@ -12,7 +12,7 @@ function testValidSolutionWhole(testCase)
 	actualExp = taylorExp(X);
 	
 	% Verify equal using tolerance
-	verifyEqual(testCase, actualExp, expectedExp, 'RelTol', 0.000001);
+	verifyEqual(testCase, actualExp, expectedExp, 'RelTol', 1*10^-6);
 end
 
 % Test cases with non-whole X values
@@ -23,7 +23,7 @@ function testValidSolutionFraction(testCase)
 	actualExp = taylorExp(X);
 	
 	% Verify equal using tolerance
-	verifyEqual(testCase, actualExp, expectedExp, 'RelTol', 0.000001);
+	verifyEqual(testCase, actualExp, expectedExp, 'RelTol', 1*10^-6);
 end
 
 % Test a valid solution with a scalar X value
@@ -48,15 +48,16 @@ function testZeroX(testCase)
 	verifyEqual(testCase, actualExp, expectedExp, 'RelTol', 1*10^-6);
 end
 
-% Test that negative X values return 1
+% Test that negative X values return reasonably close values 
+% the function would need to calculate terms to a tighter tolerance to get accurate values further from zero.
 function testNegativeX(testCase)
 	X = [-1,-2,-4,-8];
 	
-	expectedExp = [1,1,1,1];
+	expectedExp = exp(X);
 	actualExp = taylorExp(X);
 	
 	% Verify equal using tolerance
-	verifyEqual(testCase, actualExp, expectedExp, 'AbsTol', 1*10^-6);
+	verifyEqual(testCase, actualExp, expectedExp, 'RelTol', 1*10^-6);
 end
 
 % Test an empty X value returns blank
@@ -67,5 +68,5 @@ function testEmptyX(testCase)
 	actualExp = taylorExp(X);
 	
 	% Verify equal using tolerance
-	verifyEqual(testCase, actualExp, expectedExp, 'AbsTol', 1*10^-6);
+	verifyEqual(testCase, actualExp, expectedExp, 'RelTol', 1*10^-6);
 end
