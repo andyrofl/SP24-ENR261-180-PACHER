@@ -10,7 +10,7 @@ fprintf("Output for %s written by %s, with assitance from %s. \n\n", tutorial_na
 
 %declare a variable and display it in the terminal
 varA = 25
-VarA
+varA
 
 %display some text
 disp("just saying hello.")

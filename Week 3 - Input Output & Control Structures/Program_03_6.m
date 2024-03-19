@@ -47,7 +47,7 @@ fprintf("%g m/s = %g km/h\n\n", speed_kph, speed_mps)
 
 %Converting pounds per square inch to kiloPascals
 fprintf("Part D:\n")
-pressure_PSI = input("Enter a pressure in PSI then hit enter: \n");%input value must be a number but need not be an integer
+pressure_psi = input("Enter a pressure in PSI then hit enter: \n");%input value must be a number but need not be an integer
 pressure_kPa = pressure_psi.*kPa_per_PSI;
 fprintf("%g psi = %g kPa\n\n", pressure_psi, pressure_kPa)
 
