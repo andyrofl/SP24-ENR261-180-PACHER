@@ -127,8 +127,9 @@ b=exp(logb);
 % Calculate the best fit values using a linear model (y=mx+b)
 xp1=linspace(1,12,100); % 100 values between 1 and 12
 yp1=b*xp1.^m;  % find the fit values
+
+
 % Plot data set 1 and the power funtion fit on a linear graph
-%??? it plots itself?
 % Activate the second plot in this Figure's subplot
 subplot(2,1,2)
 legend('Data Paints', 'Y=b*e^x fit', 'Location','southeast')
