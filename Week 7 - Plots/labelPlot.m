@@ -1,7 +1,3 @@
-%Program Description:
-%The purpose of this program is to define a function labelPlot to be used later
-
-
 % LABELPLOT Adds a title, x and y axis labels, and gridlines to a plot.
 %
 % This function will only apply the aforementioned properties to the
