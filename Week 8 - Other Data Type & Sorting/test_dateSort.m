@@ -18,7 +18,7 @@ end
 function test_valid_date_matrix(test_case)
 	date = [2003, 3, 21; 0001, 1,1; 2003, 3, 25; 2003, 3, 22; 2003, 4, 20; 2002, 3, 21];
 	
-	expected_value = [0001, 1,1; 2002, 3, 21; 2003, 3, 21; 2003, 3, 22; 2003, 3, 25; 2003, 4, 20];
+	expected_value = [2003, 4, 20; 2003, 3, 25; 2003, 3, 22; 2003, 3, 21; 2002, 3, 21; 0001, 1,1;];
 	actual_value = dateSort(date);
 
 	verifyEqual(test_case, actual_value, expected_value);
