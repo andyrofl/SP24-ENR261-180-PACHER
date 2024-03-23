@@ -57,13 +57,6 @@ function [output_matrix] = sort_matrix_by_index(input_matrix, index)
     		sorted = true;  % assumes x is fully sorted at the start of each pass
     		passes = passes +1; % add one to the number of passes
     		
-    		% On each pass through vector x the for loop starts with the first
-    		% element and continues until the (n-passes) element. After the first
-    		% pass the largest value in x will fall to the last element therefor on
-    		% the second pass there is no need to check to see if the last value is
-    		% in the correct order.  After each subsequent pass the x(n-passes:n)
-    		% elements are in the correct order.  This is why the for loop limits
-    		% go from 1 to (n-passes).
     		for j = 1: n-passes
        			if input_matrix(j, index) > input_matrix(j+1, index) % compares the current element input_matrix(j, index) with the next element input_matrix(j+1, index)
            			temp = input_matrix(j,:);  % stores the current row in a temp memory location
