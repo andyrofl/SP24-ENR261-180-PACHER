@@ -31,7 +31,7 @@ while(~input_valid)
 	%to perform matrix multiplication, the number of columns of the first matrix must equal the number of rows in the second
 	%if this condition is met the exit contition is triggered and the loop terminates, otherwise the user is notified of the error and the input prompt repeats
 	%this will reject cases where one matrix is empty but will allow both matrices to be empty and calculates the same product as the standard matrix multiplcation operation
-	if(columns_A == rows_B || isscalar(A) || isscalar(b))
+	if(columns_A == rows_B || isscalar(A) || isscalar(B))
 		input_valid = true;
 		continue
 	end

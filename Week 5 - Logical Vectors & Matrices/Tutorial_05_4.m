@@ -31,7 +31,7 @@ grade_d = (num_grades>=60 & num_grades<70);
 	letter_grades(grade_d) = 'D';
 grade_f = num_grades<60;
 	count_by_grade(5) = sum(grade_f);
-	letter_grades(grade_f) = 'E';
+	letter_grades(grade_f) = 'F';
 
 
 % Print out the heading for the table of results

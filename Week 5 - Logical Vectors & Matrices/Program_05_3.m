@@ -60,7 +60,7 @@ while(current_reject_count > 0)
 	end
 
 	%re-generate rejected resistors, still using orignal specifications
-	resistors(find(outside_first_deviation == 1)) = MEAN_SPEC + STDDEV_SPEC.*randn(current_reject_count,1);
+	resistors(outside_first_deviation == 1) = MEAN_SPEC + STDDEV_SPEC.*randn(current_reject_count,1);%rewrote find() into logical operation
 	%increment the cumulative count of rejected resistors and the batch number
 	rejected_resistor_count = rejected_resistor_count + current_reject_count;
 	batch_count = batch_count +1;
