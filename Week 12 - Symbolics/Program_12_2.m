@@ -1,5 +1,5 @@
 %Program Description:
-%The purpose of this program is to
+%The purpose of this program is to perform several expansion and simplification operations on polynomial equations
 
 
 %Clear the command window and all variables

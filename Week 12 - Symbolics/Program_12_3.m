@@ -1,5 +1,6 @@
 %Program Description:
-%The purpose of this program is to
+%The purpose of this program is to solve a system of equations symbolically for specified variables and evaluate them with a given
+% parameter, then plot the equations
 
 
 %Clear the command window and all variables
