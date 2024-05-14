@@ -9,7 +9,7 @@ SPACE = DIT;
 SPACE_LETTER = 3*DIT;
 SPACE_WORD = 7*DIT;
 %tolerance multipliers are based on the time duration they are multiplied with
-TOLERANCE_LOW = 0.7;
+TOLERANCE_LOW = 0.5;
 TOLERANCE_HIGH = 2;
 
 filename = "morseTable.txt";
@@ -18,6 +18,9 @@ opts.VariableTypes = {'string', 'string'};
 opts.DataLines = [1 38];
 
 word_book = readtable(filename, opts);
+
+board_list = readlines('board_types.txt')
+port_list = serialportlist'
 
 a = arduino('COM6', 'Nano3');
 character_vector = '';
